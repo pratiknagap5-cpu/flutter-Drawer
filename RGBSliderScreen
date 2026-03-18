@@ -1,0 +1,99 @@
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: RGBSliderScreen(),
+    );
+  }
+}
+
+class RGBSliderScreen extends StatefulWidget {
+  @override
+  _RGBSliderScreenState createState() => _RGBSliderScreenState();
+}
+
+class _RGBSliderScreenState extends State<RGBSliderScreen> {
+  double red = 0;
+  double green = 0;
+  double blue = 0;
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: Color.fromRGBO(
+        red.toInt(),
+        green.toInt(),
+        blue.toInt(),
+        1,
+      ),
+      appBar: AppBar(
+        title: Text("RGB Color Slider"),
+        centerTitle: true,
+      ),
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+
+          Text("Red: ${red.toInt()}"),
+          Slider(
+            value: red,
+            min: 0,
+            max: 255,
+            activeColor: Colors.red,
+            onChanged: (value) {
+              setState(() {
+                red = value;
+              });
+            },
+          ),
+
+          Text("Green: ${green.toInt()}"),
+          Slider(
+            value: green,
+            min: 0,
+            max: 255,
+            activeColor: Colors.green,
+            onChanged: (value) {
+              setState(() {
+                green = value;
+              });
+            },
+          ),
+
+          Text("Blue: ${blue.toInt()}"),
+          Slider(
+            value: blue,
+            min: 0,
+            max: 255,
+            activeColor: Colors.blue,
+            onChanged: (value) {
+              setState(() {
+                blue = value;
+              });
+            },
+          ),
+
+          SizedBox(height: 20),
+
+          Container(
+            height: 100,
+            width: 100,
+            color: Color.fromRGBO(
+              red.toInt(),
+              green.toInt(),
+              blue.toInt(),
+              1,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
